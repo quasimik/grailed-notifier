@@ -1,5 +1,6 @@
 import json
 import boto3
+import sys
 
 client = boto3.client('ses')
 
@@ -8,6 +9,9 @@ with open('email.txt', 'r') as file:
 
 with open('new_items.json', 'r') as file:
   items = json.load(file)
+
+if len(items) == 0:
+  sys.exit()
 
 html_items = ''
 for item in items:
@@ -28,6 +32,7 @@ html_string = '''
 .container {
   display: flex;
   flex-flow: row wrap;
+  width: 600px;
 }
 
 .item {
