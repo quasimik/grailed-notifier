@@ -12,7 +12,10 @@ class GrailedScraper():
 
   def __init__(self, query_ids):
     self.query_ids = query_ids
-    self.driver = webdriver.Firefox()
+    
+    options = webdriver.FirefoxOptions()
+    options.add_argument('-headless')
+    self.driver = webdriver.Firefox(firefox_options=options)
   
   def __del__(self):
     self.driver.quit()
