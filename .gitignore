@@ -1,0 +1,8 @@
+*.json
+email.txt
+geckodriver
+out/*
+__pycache__
+venv
+*.log
+sample.html
