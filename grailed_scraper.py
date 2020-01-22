@@ -6,13 +6,14 @@ import selenium.webdriver.support.expected_conditions as EC
 from selenium.webdriver.common.by import By
 from datetime import datetime
 
-GRAILED_SHOP_URL = 'https://www.grailed.com/shop/'
+GRAILED_URL = 'https://www.grailed.com'
+GRAILED_SHOP_URL = GRAILED_URL + '/shop'
 
 class GrailedScraper():
 
   def __init__(self, query_ids):
     self.query_ids = query_ids
-    
+
     options = webdriver.FirefoxOptions()
     options.add_argument('-headless')
     self.driver = webdriver.Firefox(firefox_options=options)
@@ -49,7 +50,7 @@ class GrailedScraper():
       original_price = item.css('p.original-price span::text')
       price = new_price.get() if new_price else original_price.get()
       yield {
-        'url': item.css('a::attr(href)').get(),
+        'url': GRAILED_URL + item.css('a::attr(href)').get(),
         'img_url': item.css('img::attr(src)').get(),
         'designer': item.css('p.listing-designer::text').get(),
         'size': item.css('p.listing-size::text').get(),
