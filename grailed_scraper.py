@@ -25,7 +25,7 @@ class GrailedScraper():
     for query_id in self.query_ids:
 
       # load URL in selenium webdriver
-      url = GRAILED_SHOP_URL + query_id
+      url = GRAILED_SHOP_URL + '/' + query_id
       self.driver.get(url)
       WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'feed-item')))
       response = scrapy.http.HtmlResponse(url=self.driver.current_url, 
