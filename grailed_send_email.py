@@ -17,7 +17,7 @@ for item in items:
   <p>{item_title}</p>
   <p>Size {item_size} &mdash; {item_price}</p>
 </a>
-'''.format(item_url=item['url'], img_url=item[img_url], item_title=item['title'], item_size=item['size'], item_price=item['price'])
+'''.format(item_url=item['url'], img_url=item['img_url'], item_title=item['title'], item_size=item['size'], item_price=item['price'])
 
 html_string = '''
 <!DOCTYPE html>
