@@ -16,12 +16,8 @@ if len(items) == 0:
 html_items = ''
 for item in items:
   html_items += '''
-<a href="{item_url}" class="item">
-  <img src="{img_url}">
-  <p>{item_title}</p>
-  <p>Size {item_size} &mdash; {item_price}</p>
-</a>
-'''.format(item_url=item['url'], img_url=item['img_url'], item_title=item['title'], item_size=item['size'], item_price=item['price'])
+<li>[Size {item_size} &mdash; {item_price}] <a href="{item_url}" class="item">{item_title}</a></li>
+'''.format(item_url=item['url'], item_title=item['title'], item_size=item['size'], item_price=item['price'])
 
 html_string = '''
 <!DOCTYPE html>
@@ -30,23 +26,7 @@ html_string = '''
 <style>
 
 .container {
-  display: flex;
-  flex-flow: row wrap;
   width: 600px;
-}
-
-.item {
-  border: 1px solid black;
-  margin: 20px;
-  padding: 10px;
-  display: flex;
-  flex-flow: column nowrap;
-  width: 240px;
-}
-
-img {
-  height: 320px;
-  width: 240px;
 }
 
 </style>
@@ -66,7 +46,7 @@ client.send_email(
   },
   Message={
     'Subject': {
-      'Data': '[Grailed Notifier] New Items Posted',
+      'Data': '[Grailed Notifier] ' + str(len(items)) + ' New Items Posted',
       'Charset': 'UTF-8'
     },
     'Body': {
